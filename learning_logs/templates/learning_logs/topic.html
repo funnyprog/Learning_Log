@@ -8,20 +8,20 @@
 {% block content %}
 <form action="{% url 'learning_logs:new_entry' topic.id %}">
     {% buttons %}
-    <button name="submit" class="btn btn-primary">Add new entry</button>
+    <button name="submit" class="btn btn-primary">Add a new entry</button>
     {% endbuttons %}
 </form>
 
 {% for entry in entries %}
-<div class="panel panel-default">
+<div class="panel panel-info">
     <div class="panel-heading">
-        <h3>
+        <h5>
             {{ entry.date_added|date:'M d, Y H:i' }}
             <small>
                 <a href="{% url 'learning_logs:edit_entry' entry.id %}">
                     Edit entry</a>
             </small>
-        </h3>
+        </h5>
     </div>
     <div class="panel-body">
         {{ entry.text|linebreaks }}
@@ -29,7 +29,7 @@
 </div> <!-- panel -->
 
 {% empty %}
-    There are no entries for this topic yet.
+    <h4>There are no entries for this topic yet.</h4>
 {% endfor %}
 
 {% endblock content %}

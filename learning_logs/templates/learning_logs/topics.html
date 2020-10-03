@@ -1,25 +1,23 @@
 {% extends "learning_logs/base.html" %}
 {% load bootstrap3 %}
 {% block header %}
-<h2>Topics</h2>
+<h2>Your topics</h2>
 {% endblock header %}
 
 {% block content %}
 <ul>
     {% for topic in topics %}
     <li>
-        <h3>
+        <h5>
             <a href="{% url 'learning_logs:topic' topic.id %} ">{{ topic }}</a>
-        </h3>
+        </h5>
     </li>
     {% endfor %}
 </ul>
 
-<p>
 <form action="{% url 'learning_logs:new_topic' %}">
     {% buttons %}
     <button name="submit" class="btn btn-primary">Add a new topic</button>
     {% endbuttons %}
 </form>
-</p>
 {% endblock content %}
