@@ -49,8 +49,6 @@ def new_topic(request):
 def new_entry(request, topic_id):
     """Определяет новую запись"""
     topic = Topic.objects.get(id=topic_id)
-    if topic.owner != request.user:
-        raise Http404
     if request.method != 'POST':
         # Данные не отправились, создается пустая форма
         form = EntryForm()
@@ -70,6 +68,8 @@ def edit_entry(request, entry_id):
     """Редактирование записей"""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
+    if topic.owner != request.user:
+        raise Http404
     if request.method != 'POST':
         form = EntryForm(instance=entry)
     else:
@@ -79,3 +79,20 @@ def edit_entry(request, entry_id):
             return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
     context = {'entry': entry, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_entry.html', context)
+
+@login_required
+def delete_entry(request, entry_id):
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+    entry.delete()
+    return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic.id]))
+
+@login_required
+def delete_topic(request, topic_id):
+    topic = Topic.objects.get(id=topic_id)
+    topic.delete()
+    return HttpResponseRedirect(reverse('learning_logs:topics'))
+
+
+
+

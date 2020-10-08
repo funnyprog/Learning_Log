@@ -1,18 +1,22 @@
 {% extends "learning_logs/base.html" %}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 
 {% block header %}
-<h2>Login in to your account</h2>
 {% endblock header %}
 
 {% block content %}
-
-<form method="post" action="{% url 'users:login' %}" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% buttons %}
-    <button name="submit" class="btn btn-primary">Log in</button>
-    {% endbuttons %}
-    <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
-</form>
+<div class="jumbotron" style="background-color: #E6E6FA">
+    <p class="display-4" align="center">Sign in</p>
+    <hr class="my-3">
+    <form method="post" action="{% url 'users:login' %}" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <div align="right">
+            {% buttons %}
+            <button name="submit" class="btn btn-primary">Log in</button>
+            {% endbuttons %}
+        </div>
+        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+    </form>
+</div>
 {% endblock content %}

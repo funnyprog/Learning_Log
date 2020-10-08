@@ -1,5 +1,5 @@
-{% load bootstrap3 %}
-
+{% load bootstrap4 %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,39 +10,53 @@
     <title>Learning Log</title>
 
     {% bootstrap_css %}
-    {% bootstrap_javascript %}
+    {% bootstrap_javascript jquery='full' %}
+    <style>
+    body {
+    background-image: url({% static "learning_logs/фон.jpg"%});
+    background-size: cover;
+    background-attachment: fixed;
+    }
+    </style>
 </head>
 <body>
-<!-- Статическая навигационная панель -->
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-            </button>
-            <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
-                Learning Log</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{% url 'learning_logs:topics' %}">Topics</a></li>
-            </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                {% if user.is_authenticated %}
-                <li><a>Hello, {{ user.username }}.</a></li>
-                <li><a href="{% url 'users:logout' %}">Log out</a></li>
-                {% else %}
-                <li><a href="{% url 'users:register' %}">Register</a></li>
-                <li><a href="{% url 'users:login' %}">Log in</a></li>
-                {% endif %}
-            </ul>
-        </div><!--/.nav-collapse -->
+<!-- Фиксированная навигационная панель -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #DCDCDC">
+    <a class="navbar-brand" href="{% url 'learning_logs:index' %}"><b>Learning Log</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'learning_logs:topics' %}"><b>Topics</b>
+                    <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link disabled"><b>Hello, {{ user.username }}.</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:logout' %}"><b>Log out</b></a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:register' %}"><b>Register</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:login' %}"><b>Log in</b></a>
+            </li>
+            {% endif %}
+        </ul>
     </div>
 </nav>
 
-<div class="container">
+<div class="container" style="margin-top: 100px">
     <div class="page-header">
         {% block header %}{% endblock header %}
     </div>
