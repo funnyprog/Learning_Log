@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #
-    'bootstrap4',
+    'crispy_forms',
     # My apps
     'learning_logs',
     'users',
@@ -120,25 +120,7 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/users/login'
 
-# Настройки django-bootstrap3
-BOOTSTRAP4 = {
-    'include_jquery': True,
-}
-import os
-if os.getcwd() == '/app':
-    import dj_database_url
+# Настройки django-bootstrap4
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-    DATABASES = {
-        'default': dj_database_url.config(default='postgres://localhost')
-    }
-    # Поддержка заголовка 'X-Forwarded-Proto' для request.is_secure().
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    # Разрешены все заголовки хостов.
-    ALLOWED_HOSTS = ['*']
-
-    # Конфигурация статических ресурсов
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-)
+# Activate Django-Heroku.

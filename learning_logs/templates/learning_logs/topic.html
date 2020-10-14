@@ -1,5 +1,4 @@
 {% extends 'learning_logs/base.html' %}
-{% load bootstrap4 %}
 
 {% block header %}
 
@@ -12,11 +11,9 @@
     {% if entries %}
     <div align="right">
         <form action="{% url 'learning_logs:new_entry' topic.id %}">
-            {% buttons %}
             <button name="submit" class="btn btn-primary">Add a new entry</button>
             <a href="{% url 'learning_logs:delete_topic' topic.id %}"
                class="btn btn-danger" role="button">Delete topic</a>
-            {% endbuttons %}
         </form>
     </div>
     {% for entry in entries %}
@@ -37,11 +34,9 @@
     <h4 align="center">There are no entries for this topic yet.</h4>
     <div align="center" style="margin-top: 20px">
         <form action="{% url 'learning_logs:new_entry' topic.id %}">
-            {% buttons %}
             <button name="submit" class="btn btn-primary">Add a new entry</button>
             <a href="{% url 'learning_logs:delete_topic' topic.id %}"
                class="btn btn-danger" role="button">Delete topic</a>
-            {% endbuttons %}
         </form>
     </div>
     {% endif %}

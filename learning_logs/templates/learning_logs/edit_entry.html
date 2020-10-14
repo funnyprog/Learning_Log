@@ -1,6 +1,5 @@
 {% extends 'learning_logs/base.html' %}
-{% load bootstrap4 %}
-
+{% load crispy_forms_tags %}
 {% block header %}
 
 {% endblock header %}
@@ -12,12 +11,10 @@
     <p class="lead">Edit entry from {{ entry.date_added|date:'M d, Y H:i' }}</p>
     <form action="{% url 'learning_logs:edit_entry' entry.id %}" method='post'>
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {{ form|crispy }}
         <div align="right">
             <form action="{% url 'learning_logs:new_topic' %}">
-                {% buttons %}
                 <button name="submit" class="btn btn-primary">Save changes</button>
-                {% endbuttons %}
             </form>
         </div>
     </form>

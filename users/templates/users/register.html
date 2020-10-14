@@ -1,5 +1,5 @@
 {% extends "learning_logs/base.html" %}
-{% load bootstrap4 %}
+{% load crispy_forms_tags %}
 
 {% block header %}
 
@@ -11,11 +11,9 @@
     <hr class="my-3">
     <form method="post" action="{% url 'users:register' %}">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {{ form|crispy }}
         <div align="right">
-            {% buttons %}
             <button name="submit" class="btn btn-primary">Register</button>
-            {% endbuttons %}
         </div>
         <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
     </form>

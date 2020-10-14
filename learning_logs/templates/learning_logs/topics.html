@@ -1,5 +1,4 @@
 {% extends "learning_logs/base.html" %}
-{% load bootstrap4 %}
 {% block header %}
 {% endblock header %}
 
@@ -16,9 +15,7 @@
     </ul>
     <div align="right">
         <form action="{% url 'learning_logs:new_topic' %}">
-            {% buttons %}
             <button name="submit" class="btn btn-primary">Add a new topic</button>
-            {% endbuttons %}
         </form>
     </div>
 </div>

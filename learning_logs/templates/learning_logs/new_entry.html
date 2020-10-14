@@ -1,6 +1,5 @@
 {% extends "learning_logs/base.html" %}
-{% load bootstrap4 %}
-
+{% load crispy_forms_tags %}
 {% block header %}
 
 {% endblock header %}
@@ -11,16 +10,12 @@
     <hr class="my-3">
     <form action="{% url 'learning_logs:new_entry' topic.id %}" method='post'>
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {{ form|crispy }}
         <div align="right">
             <form action="{% url 'learning_logs:new_topic' %}">
-                {% buttons %}
                 <button name="submit" class="btn btn-primary">Add entry</button>
-                {% endbuttons %}
             </form>
         </div>
     </form>
 </div>
-
-
 {% endblock content %}
