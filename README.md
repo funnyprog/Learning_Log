@@ -3,7 +3,7 @@
 This project was created based on the book "Python crash cours" by Eric Mathis.
 
 Prepare to use:
-+ git clone https://github.com/Hawool/Learning_Log.git
++ git clone https://github.com/funnyprog/Learning_Log.git
 + cd Learning_Log/learning_log/
 + pip install requirements.txt
 
